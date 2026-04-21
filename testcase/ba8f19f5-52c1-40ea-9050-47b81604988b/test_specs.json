@@ -1,0 +1,16 @@
+{
+  "name": "Integration - Configuration Loading and Key Vault Secret Injection",
+  "description": "Tests that the Config class correctly loads environment variables and Azure Key Vault secrets, and that required config values are available to the agent.",
+  "test_type": "integration",
+  "input": "Environment with USE_KEY_VAULT enabled and valid KEY_VAULT_URI, with secrets present in Azure Key Vault.",
+  "output": "Config attributes (e.g., AZURE_OPENAI_API_KEY, AZURE_TRANSLATOR_KEY) are populated and accessible.",
+  "success_criteria": [
+    "Config.USE_KEY_VAULT is True",
+    "Config._kv_secrets contains expected keys",
+    "Config.AZURE_OPENAI_API_KEY is not empty"
+  ],
+  "error_scenarios": [
+    "Key Vault client initialization fails",
+    "Secrets missing or not loaded"
+  ]
+}
