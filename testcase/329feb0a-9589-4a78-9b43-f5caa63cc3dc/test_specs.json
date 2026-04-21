@@ -1,0 +1,15 @@
+{
+  "name": "Performance - FSR Processing Latency Under Load",
+  "description": "Measures the response time of the /process_fsr endpoint when processing multiple concurrent requests to ensure it meets performance requirements.",
+  "test_type": "performance",
+  "input": "Simultaneous POST requests to /process_fsr with valid FSRProcessRequest payloads.",
+  "output": "All responses are returned within the acceptable latency threshold (e.g., < 2 seconds per request).",
+  "success_criteria": [
+    "All responses are received within the defined latency threshold",
+    "No timeouts or server errors occur"
+  ],
+  "error_scenarios": [
+    "Requests exceed latency threshold",
+    "Server returns 5xx errors under load"
+  ]
+}
