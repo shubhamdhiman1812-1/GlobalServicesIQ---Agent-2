@@ -1,0 +1,17 @@
+{
+  "name": "Integration - End-to-End FSR Workflow with Escalation",
+  "description": "Tests the full agent workflow including escalation when flagged_terms are present and script_direction is 'rtl', ensuring escalation logic and audit logging are triggered.",
+  "test_type": "integration",
+  "input": "POST request to /process_fsr with extracted_fsr containing segments that will result in low confidence scores and script_direction set to 'rtl'.",
+  "output": "FSRProcessResponse with success=false, output containing empty english_body and confidence, flagged_terms present, error message indicating escalation.",
+  "success_criteria": [
+    "response.success is False",
+    "response.output.flagged_terms is not empty",
+    "response.error contains 'escalated to the safety-review human-in-loop queue'",
+    "AuditLogger.log_event called with 'escalate_to_human_review'"
+  ],
+  "error_scenarios": [
+    "EscalationManager.handle_escalation fails",
+    "AuditLogger fails to log event"
+  ]
+}
