@@ -1,0 +1,16 @@
+{
+  "name": "Security - Input Validation and Content Safety Enforcement",
+  "description": "Ensures that the agent enforces content safety and input validation, rejecting malformed or unsafe input at the API boundary.",
+  "test_type": "security",
+  "input": "POST request to /process_fsr with extracted_fsr containing unsafe content (e.g., PII, credentials, or toxic language) or malformed JSON.",
+  "output": "FSRProcessResponse with success=false, error message indicating validation or content safety failure.",
+  "success_criteria": [
+    "response.success is False",
+    "response.error contains 'Malformed JSON' or 'Input validation failed' or content safety violation",
+    "HTTP status is 422"
+  ],
+  "error_scenarios": [
+    "Content safety decorator fails to catch unsafe input",
+    "ValidationError or RequestValidationError not handled"
+  ]
+}
