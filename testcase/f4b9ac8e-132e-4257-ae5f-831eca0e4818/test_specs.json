@@ -1,0 +1,15 @@
+{
+  "name": "Functional - Health Check Endpoint",
+  "description": "Verifies that the /health endpoint is available and returns the expected status.",
+  "test_type": "functional",
+  "input": "GET request to /health",
+  "output": "JSON response with status: ok",
+  "success_criteria": [
+    "HTTP status is 200",
+    "response.status is 'ok'"
+  ],
+  "error_scenarios": [
+    "Endpoint is unavailable",
+    "Unexpected response format"
+  ]
+}
