@@ -1,0 +1,17 @@
+{
+  "name": "Functional - Successful FSR Processing via process_fsr_endpoint",
+  "description": "Validates that the /process_fsr endpoint processes a well-formed FSR JSON and returns a successful, correctly structured response.",
+  "test_type": "functional",
+  "input": "POST request to /process_fsr with FSRProcessRequest containing a valid extracted_fsr dict with 'segments' or 'body'.",
+  "output": "FSRProcessResponse with success=true, output containing english_body, original, confidence, and flagged_terms.",
+  "success_criteria": [
+    "HTTP status is 200",
+    "response.success is True",
+    "response.output is a dict",
+    "response.output contains keys: english_body, original, confidence, flagged_terms",
+    "response.error is None"
+  ],
+  "error_scenarios": [
+    "None for this positive path"
+  ]
+}
